@@ -2,6 +2,8 @@ function HashMap() {
   let loadFactor = 0.75;
   let capacity = 16;
 
+  const buckets = new Array(capacity);
+
   const hash = (key) => {
     let hashCode = 0;
 
