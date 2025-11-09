@@ -208,7 +208,9 @@ function LinkedList() {
       str = tempNode.LLvalue.key;
       tempNode = tempNode.nextNode;
     }
-    str = tempNode;
+
+    if (tempNode === null) return null;
+
     return str;
   };
 
