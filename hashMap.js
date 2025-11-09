@@ -56,6 +56,18 @@ function HashMap() {
     return valueFromKey;
   };
 
+  const has = (key) => {
+    const hashCode = hash(key);
+    const bucketsValueAt = buckets[hashCode];
+    const newCreateList = LinkedList();
+
+    if (bucketsValueAt === undefined) return false;
+
+    newCreateList.addListToHeadnode(bucketsValueAt);
+    const constainsKey = newCreateList.containsKey(key);
+    return constainsKey;
+  };
+
   const showBuckets = () => buckets;
 
   return {
@@ -63,6 +75,7 @@ function HashMap() {
     set,
     showBuckets,
     get,
+    has,
   };
 }
 
@@ -77,4 +90,5 @@ test.set("delapan", "I am delapan");
 test.set("sembilan", "I am sembilan");
 
 // console.log(...test.showBuckets());
-console.log(test.get("Sitaasd"));
+console.log(test.get("sembilan"));
+console.log(`contains key: ${test.has("yonos")}`);

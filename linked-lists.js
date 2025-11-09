@@ -232,6 +232,19 @@ function LinkedList() {
     return str;
   };
 
+  const containsKey = (keyss) => {
+    if (headNode === null) return "Linked list is empty";
+
+    let tempNode = headNode;
+
+    while (tempNode !== null) {
+      if (tempNode.LLvalue.key === keyss) return true;
+      tempNode = tempNode.nextNode;
+    }
+
+    if (tempNode === null) return false;
+  };
+
   return {
     append,
     prepend,
@@ -251,6 +264,7 @@ function LinkedList() {
     searchKey,
     addListToHeadnode,
     searchValue,
+    containsKey,
   };
 }
 
