@@ -76,12 +76,28 @@ function HashMap() {
     if (bucketsValueAt === undefined) return false;
 
     newCreateList.addListToHeadnode(bucketsValueAt);
-    
+
     const indxKeyValue = newCreateList.find(key);
-    
+
     newCreateList.removeAt(indxKeyValue);
     buckets.splice(hashCode, 1, newCreateList.valueLinkedLists());
     return true;
+  };
+
+  const length = () => {
+    let count = 0;
+
+    buckets.forEach((el) => {
+      const newCreateList = LinkedList();
+
+      newCreateList.addListToHeadnode(el);
+      
+      const numberOfKeys = newCreateList.size();
+    
+      count += numberOfKeys;
+    });
+    
+    return count;
   };
 
   const showBuckets = () => buckets;
@@ -93,6 +109,7 @@ function HashMap() {
     get,
     has,
     remove,
+    length,
   };
 }
 
@@ -105,11 +122,14 @@ test.set("yono", "I am the new value.");
 test.set("yono", "I .");
 test.set("delapan", "I am delapan");
 test.set("sembilan", "I am sembilan");
+test.set("sembalun", "I am sembalun");
 
-console.log(...test.showBuckets());
-console.log(test.get("sembilan"));
-console.log(`contains key: ${test.has("yonos")}`);
-console.log(test.remove("delapan"));
-console.log(test.remove("yono"));
-console.log(test.remove("Carlos"));
-console.log(...test.showBuckets());
+// console.log(...test.showBuckets());
+// console.log(test.get("sembilan"));
+// console.log(`contains key: ${test.has("yonos")}`);
+// console.log(test.remove("delapan"));
+// console.log(test.remove("yono"));
+// console.log(test.remove("Carlos"));
+// console.log(...test.showBuckets());
+
+console.log(`length: ${test.length()}`);
