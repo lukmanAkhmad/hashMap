@@ -68,6 +68,22 @@ function HashMap() {
     return constainsKey;
   };
 
+  const remove = (key) => {
+    const hashCode = hash(key);
+    const bucketsValueAt = buckets[hashCode];
+    const newCreateList = LinkedList();
+
+    if (bucketsValueAt === undefined) return false;
+
+    newCreateList.addListToHeadnode(bucketsValueAt);
+    
+    const indxKeyValue = newCreateList.find(key);
+    
+    newCreateList.removeAt(indxKeyValue);
+    buckets.splice(hashCode, 1, newCreateList.valueLinkedLists());
+    return true;
+  };
+
   const showBuckets = () => buckets;
 
   return {
@@ -76,6 +92,7 @@ function HashMap() {
     showBuckets,
     get,
     has,
+    remove,
   };
 }
 
@@ -89,6 +106,10 @@ test.set("yono", "I .");
 test.set("delapan", "I am delapan");
 test.set("sembilan", "I am sembilan");
 
-// console.log(...test.showBuckets());
+console.log(...test.showBuckets());
 console.log(test.get("sembilan"));
 console.log(`contains key: ${test.has("yonos")}`);
+console.log(test.remove("delapan"));
+console.log(test.remove("yono"));
+console.log(test.remove("Carlos"));
+console.log(...test.showBuckets());

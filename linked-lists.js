@@ -55,7 +55,8 @@ function LinkedList() {
     for (let i = 0; i < index; i++) {
       tempNode = tempNode.nextNode;
     }
-    return tempNode.value;
+    console.log(tempNode.LLvalue.key);
+    return tempNode.LLvalue.key;
   };
 
   const pop = () => {
@@ -182,7 +183,10 @@ function LinkedList() {
     }
   };
 
-  const valueLinkedLists = () => headNode;
+  const valueLinkedLists = () => {
+    if (headNode === null) return undefined;
+    return headNode;
+  };
 
   const removeLists = () => (headNode = null);
 
