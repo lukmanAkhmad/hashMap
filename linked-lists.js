@@ -212,6 +212,24 @@ function LinkedList() {
     return str;
   };
 
+  const addListToHeadnode = (list) => (headNode = list);
+
+  const searchValue = (keyss) => {
+    let tempNode = headNode;
+    let str = "";
+
+    while (tempNode !== null) {
+      if (tempNode.LLvalue.key === keyss) {
+        return (str = tempNode.LLvalue.value);
+      }
+      tempNode = tempNode.nextNode;
+    }
+
+    if (tempNode === null) return null;
+
+    return str;
+  };
+
   return {
     append,
     prepend,
@@ -229,6 +247,8 @@ function LinkedList() {
     removeLists,
     logKeyLL,
     searchKey,
+    addListToHeadnode,
+    searchValue,
   };
 }
 

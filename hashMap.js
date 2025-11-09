@@ -42,7 +42,18 @@ function HashMap() {
       createList.append({ key, value });
       buckets.splice(hashCode, 1, createList.valueLinkedLists());
     }
-    console.log(createList.logKeyLL());
+  };
+
+  const get = (key) => {
+    const hashCode = hash(key);
+    const bucketsValueAt = buckets[hashCode];
+    const newCreateList = LinkedList();
+
+    if (bucketsValueAt === undefined) return null;
+
+    newCreateList.addListToHeadnode(bucketsValueAt);
+    const valueFromKey = newCreateList.searchValue(key);
+    return valueFromKey;
   };
 
   const showBuckets = () => buckets;
@@ -51,6 +62,7 @@ function HashMap() {
     hash,
     set,
     showBuckets,
+    get,
   };
 }
 
@@ -61,7 +73,8 @@ test.set("Sita", "I am the new value.");
 test.set("yono", "I am the old value.");
 test.set("yono", "I am the new value.");
 test.set("yono", "I .");
-test.set("delapan", "I am");
-test.set("sembilan", "I am");
+test.set("delapan", "I am delapan");
+test.set("sembilan", "I am sembilan");
 
-console.log(...test.showBuckets());
+// console.log(...test.showBuckets());
+console.log(test.get("Sitaasd"));
