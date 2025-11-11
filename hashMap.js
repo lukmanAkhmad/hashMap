@@ -104,7 +104,13 @@ function HashMap() {
     return count;
   };
 
-  const clear = () => {};
+  const clear = () => {
+    buckets.forEach((el, indx) => {
+      const newCreateList = LinkedList();
+      newCreateList.removeLists();
+      buckets.splice(indx, 1, newCreateList.valueLinkedLists());
+    });
+  };
 
   const showBuckets = () => buckets;
 
@@ -122,26 +128,20 @@ function HashMap() {
 
 const test = HashMap();
 test.set("Carlos", "I am the old value.");
-// test.set("Rama", "I am the old value.");
-// test.set("Sita", "I am the new value.");
-// test.set("yono", "I am the old value.");
-// test.set("yono", "I am the new value.");
+test.set("Rama", "I am the old value.");
+test.set("Sita", "I am the new value.");
+test.set("yono", "I am the old value.");
+test.set("yono", "I am the new value.");
 test.set("yono", "I .");
 test.set("delapan", "I am delapan");
-// test.set("sembilan", "I am sembilan");
-// test.set("sembalun", "I am sembalun");
-
-console.log(...test.showBuckets());
-// console.log(test.get("sembilan"));
-// console.log(`contains key: ${test.has("yonos")}`);
-console.log(test.remove("delapan"));
-console.log(test.remove("yono"));
-console.log(test.remove("Carlos"));
-
-// test.clear();
-console.log(`sudah dihapus`);
+test.set("sembilan", "I am sembilan");
+test.set("sembalun", "I am sembalun");
 
 console.log(...test.showBuckets());
 
+test.clear();
+console.log("calling clear");
+
+console.log(...test.showBuckets());
+console.log(`length bucket: ${test.showBuckets().length}`);
 console.log(`length: ${test.length()}`);
-console.log(`contains key: ${test.has("yonos")}`);
