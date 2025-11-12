@@ -112,6 +112,23 @@ function HashMap() {
     });
   };
 
+  const keys = () => {
+    let allHashMapKey = [];
+
+    buckets.forEach((el) => {
+      const newCreateList = LinkedList();
+
+      newCreateList.addListToHeadnode(el);
+
+      const allKey = newCreateList.logKeyLL();
+
+      allHashMapKey.push(allKey);
+    });
+    const flatAllHashMapKey = allHashMapKey.flat();
+    
+    return flatAllHashMapKey;
+  };
+
   const showBuckets = () => buckets;
 
   return {
@@ -123,6 +140,7 @@ function HashMap() {
     remove,
     length,
     clear,
+    keys,
   };
 }
 
@@ -139,9 +157,10 @@ test.set("sembalun", "I am sembalun");
 
 console.log(...test.showBuckets());
 
-test.clear();
-console.log("calling clear");
+// test.clear();
+// console.log("calling clear");
 
-console.log(...test.showBuckets());
+// console.log(...test.showBuckets());
 console.log(`length bucket: ${test.showBuckets().length}`);
 console.log(`length: ${test.length()}`);
+console.log(test.keys());

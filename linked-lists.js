@@ -192,13 +192,14 @@ function LinkedList() {
 
   const logKeyLL = () => {
     let tempNode = headNode;
-    let str = "";
+    let keyArr = [];
+    
     while (tempNode !== null) {
-      str += `( ${tempNode.LLvalue.key} ) -> `;
+      keyArr.push(tempNode.LLvalue.key);
       tempNode = tempNode.nextNode;
     }
-    str += tempNode;
-    return str;
+
+    return keyArr;
   };
 
   const searchKey = (keyss) => {
