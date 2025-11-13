@@ -214,6 +214,18 @@ function LinkedList() {
     return keyArr;
   };
 
+  const logPairKeyValueLL = () => {
+    let tempNode = headNode;
+    let pairKeyValueArr = [];
+
+    while (tempNode !== null) {
+      pairKeyValueArr.push([tempNode.LLvalue.key, tempNode.LLvalue.value]);
+      tempNode = tempNode.nextNode;
+    }
+
+    return pairKeyValueArr;
+  };
+
   const searchKey = (keyss) => {
     let tempNode = headNode;
     let str = "";
@@ -279,6 +291,7 @@ function LinkedList() {
     removeLists,
     logKeyLL,
     logValueLL,
+    logPairKeyValueLL,
     searchKey,
     addListToHeadnode,
     searchValue,

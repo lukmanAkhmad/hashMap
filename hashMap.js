@@ -146,6 +146,23 @@ function HashMap() {
     return flatAllHashMapValues;
   };
 
+  const entries = () => {
+    let allHashMapPairKeyValue = [];
+
+    buckets.forEach((el) => {
+      const newCreateList = LinkedList();
+
+      newCreateList.addListToHeadnode(el);
+
+      const logPair = newCreateList.logPairKeyValueLL();
+
+      allHashMapPairKeyValue.push(logPair);
+    });
+    const flatAllHashMapPairKeyValue = allHashMapPairKeyValue.flat();
+
+    return flatAllHashMapPairKeyValue;
+  };
+
   const showBuckets = () => buckets;
 
   return {
@@ -159,6 +176,7 @@ function HashMap() {
     clear,
     keys,
     values,
+    entries,
   };
 }
 
@@ -181,5 +199,6 @@ console.log(...test.showBuckets());
 // console.log(...test.showBuckets());
 console.log(`length bucket: ${test.showBuckets().length}`);
 console.log(`length: ${test.length()}`);
-console.log(test.keys());
-console.log(test.values());
+// console.log(test.keys());
+// console.log(test.values());
+console.log(test.entries());
