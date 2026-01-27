@@ -70,13 +70,11 @@ function HashMap() {
 
   const get = (key) => {
     const hashCode = hash(key);
-    const bucketsValueAt = buckets[hashCode];
-    const newCreateList = LinkedList();
+    const valueInBucketsIndxHashCode = buckets[hashCode];
 
-    if (bucketsValueAt === undefined) return null;
+    if (valueInBucketsIndxHashCode === undefined) return null;
 
-    newCreateList.addListToHeadnode(bucketsValueAt);
-    const valueFromKey = newCreateList.searchValue(key);
+    const valueFromKey = valueInBucketsIndxHashCode.searchValue(key);
     return valueFromKey;
   };
 
@@ -204,13 +202,16 @@ function HashMap() {
   };
 }
 
-const test = HashMap();
-test.set("Carlos", "I am the old value.");
-test.set("Rama", "I am the old value.");
-test.set("Sita", "I am the new value.");
-test.set("yono", "I .");
-test.set("delapan", "I am delapan");
-test.set("sembilan", "I am sembilan");
-test.set("sembalun", "I am sembalun");
+const hashMap = HashMap();
+hashMap.set("Carlos", "I am the old value.");
+hashMap.set("Rama", "I am the old value.");
+hashMap.set("Sita", "I am the old value.");
+hashMap.set("Sita", "I am the new value.");
+hashMap.set("yono", "I .");
+hashMap.set("delapan", "I am delapan");
+hashMap.set("sembilan", "I am sembilan");
+hashMap.set("sembalun", "I am sembalun");
+hashMap.set("lion", "golden");
 
-console.log(...test.showBuckets());
+console.log(...hashMap.showBuckets());
+console.log(hashMap.get("lion"));
