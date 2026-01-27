@@ -106,17 +106,11 @@ function HashMap() {
     let count = 0;
 
     buckets.forEach((el) => {
-      const newCreateList = LinkedList();
+      if (el !== undefined) {
+        const numberOfKeys = el.size();
 
-      let linkListInBucket = null;
-
-      if (el !== undefined) linkListInBucket = el;
-
-      newCreateList.addListToHeadnode(linkListInBucket);
-
-      const numberOfKeys = newCreateList.size();
-
-      count += numberOfKeys;
+        count += numberOfKeys;
+      }
     });
 
     return count;
@@ -215,3 +209,4 @@ console.log(hashMap.has("Sita"));
 console.log(hashMap.remove("jaka"));
 console.log(hashMap.remove("Carlos"));
 console.log(...hashMap.showBuckets());
+console.log(hashMap.length());
