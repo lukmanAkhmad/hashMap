@@ -80,13 +80,11 @@ function HashMap() {
 
   const has = (key) => {
     const hashCode = hash(key);
-    const bucketsValueAt = buckets[hashCode];
-    const newCreateList = LinkedList();
+    const valueInBucketsIndxHashCode = buckets[hashCode];
 
-    if (bucketsValueAt === undefined) return false;
+    if (valueInBucketsIndxHashCode === undefined) return false;
 
-    newCreateList.addListToHeadnode(bucketsValueAt);
-    const constainsKey = newCreateList.containsKey(key);
+    const constainsKey = valueInBucketsIndxHashCode.containsKey(key);
     return constainsKey;
   };
 
@@ -215,3 +213,4 @@ hashMap.set("lion", "golden");
 
 console.log(...hashMap.showBuckets());
 console.log(hashMap.get("lion"));
+console.log(hashMap.has("Sita"));
