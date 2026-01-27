@@ -55,7 +55,7 @@ function LinkedList() {
     for (let i = 0; i < index; i++) {
       tempNode = tempNode.nextNode;
     }
-    console.log(tempNode.LLvalue.key);
+
     return tempNode.LLvalue.key;
   };
 
