@@ -1,3 +1,5 @@
+import { LinkedList } from "./linked-lists";
+
 function HashMap() {
   let capacity = 16;
   let loadFactor = 0.75;
@@ -90,17 +92,13 @@ function HashMap() {
 
   const remove = (key) => {
     const hashCode = hash(key);
-    const bucketsValueAt = buckets[hashCode];
-    const newCreateList = LinkedList();
+    const valueInBucketsIndxHashCode = buckets[hashCode];
 
-    if (bucketsValueAt === undefined) return false;
+    if (valueInBucketsIndxHashCode === undefined) return false;
 
-    newCreateList.addListToHeadnode(bucketsValueAt);
+    const indxKeyValue = valueInBucketsIndxHashCode.find(key);
 
-    const indxKeyValue = newCreateList.find(key);
-
-    newCreateList.removeAt(indxKeyValue);
-    buckets.splice(hashCode, 1, newCreateList.valueLinkedLists());
+    valueInBucketsIndxHashCode.removeAt(indxKeyValue);
     return true;
   };
 
@@ -214,3 +212,6 @@ hashMap.set("lion", "golden");
 console.log(...hashMap.showBuckets());
 console.log(hashMap.get("lion"));
 console.log(hashMap.has("Sita"));
+console.log(hashMap.remove("jaka"));
+console.log(hashMap.remove("Carlos"));
+console.log(...hashMap.showBuckets());
