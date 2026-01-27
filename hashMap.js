@@ -1,12 +1,18 @@
-import { LinkedList } from "./linked-lists.js";
-
 function HashMap() {
-  let loadFactor = 0.75;
   let capacity = 16;
+  let loadFactor = 0.75;
+  const MAX_BUCKET_ENTRIES = capacity * loadFactor;
+  console.log(`MAX_BUCKET_ENTRIES: ${MAX_BUCKET_ENTRIES}`);
 
-  const buckets = new Array(capacity);
+  let buckets = new Array(capacity);
 
   const hash = (key) => {
+    if (typeof key !== "string") {
+      return console.log(
+        "For this project, we will only handle keys of type string.",
+      );
+    }
+
     let hashCode = 0;
 
     const primeNumber = 31;
@@ -20,6 +26,8 @@ function HashMap() {
   const createList = LinkedList();
   const set = (key, value) => {
     const hashCode = hash(key);
+    // console.log(hashCode);
+    console.log(`kode hash ${key}: ${hashCode}`);
 
     if (buckets[hashCode] === undefined) {
       const newCreateList = LinkedList();
@@ -28,19 +36,28 @@ function HashMap() {
       buckets.splice(hashCode, 1, newCreateList.valueLinkedLists());
       createList.removeLists();
       createList.append(buckets[hashCode].LLvalue);
-    } else if (buckets[hashCode] !== undefined) {
+      return;
+    }
+    if (buckets[hashCode] !== undefined) {
       const keyValue = createList.searchKey(key);
       const indxKeyValue = createList.find(key);
 
       console.log(key === keyValue);
       console.log(indxKeyValue);
       if (key === keyValue) {
-        console.log("calling removeAt");
+        console.log(
+          "calling removeAt AKA this is an update because the keys are same",
+        );
         createList.removeAt(indxKeyValue);
       }
 
+      console.log(
+        "not calling removeAt AKA this is not an update because the keys are different",
+      );
+
       createList.append({ key, value });
       buckets.splice(hashCode, 1, createList.valueLinkedLists());
+      return;
     }
   };
 
@@ -184,8 +201,6 @@ const test = HashMap();
 test.set("Carlos", "I am the old value.");
 test.set("Rama", "I am the old value.");
 test.set("Sita", "I am the new value.");
-test.set("yono", "I am the old value.");
-test.set("yono", "I am the new value.");
 test.set("yono", "I .");
 test.set("delapan", "I am delapan");
 test.set("sembilan", "I am sembilan");
@@ -193,12 +208,3 @@ test.set("sembalun", "I am sembalun");
 
 console.log(...test.showBuckets());
 
-// test.clear();
-// console.log("calling clear");
-
-// console.log(...test.showBuckets());
-console.log(`length bucket: ${test.showBuckets().length}`);
-console.log(`length: ${test.length()}`);
-// console.log(test.keys());
-// console.log(test.values());
-console.log(test.entries());
