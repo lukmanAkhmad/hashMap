@@ -23,40 +23,47 @@ function HashMap() {
     return hashCode;
   };
 
-  const createList = LinkedList();
   const set = (key, value) => {
     const hashCode = hash(key);
-    // console.log(hashCode);
     console.log(`kode hash ${key}: ${hashCode}`);
 
-    if (buckets[hashCode] === undefined) {
-      const newCreateList = LinkedList();
+    if (hashCode < 0 || hashCode >= buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
 
-      newCreateList.append({ key, value });
-      buckets.splice(hashCode, 1, newCreateList.valueLinkedLists());
-      createList.removeLists();
-      createList.append(buckets[hashCode].LLvalue);
+    console.log(`buckets[hashCode] Before: ${buckets[hashCode]}`);
+
+    if (buckets[hashCode] === undefined || buckets[hashCode] === null) {
+      const createList = LinkedList();
+
+      buckets[hashCode] = createList;
+      buckets[hashCode].prepend({ key, value });
+
       return;
     }
-    if (buckets[hashCode] !== undefined) {
-      const keyValue = createList.searchKey(key);
-      const indxKeyValue = createList.find(key);
+
+    if (buckets[hashCode] !== undefined || buckets[hashCode] !== null) {
+      const keyValue = buckets[hashCode].searchKey(key);
+      const indxKeyValue = buckets[hashCode].find(key);
 
       console.log(key === keyValue);
       console.log(indxKeyValue);
+
       if (key === keyValue) {
         console.log(
           "calling removeAt AKA this is an update because the keys are same",
         );
-        createList.removeAt(indxKeyValue);
+        buckets[hashCode].removeAt(indxKeyValue);
+      } else {
+        console.log(
+          "not calling removeAt AKA this is not an update because the keys are different",
+        );
       }
 
+      buckets[hashCode].append({ key, value });
       console.log(
-        "not calling removeAt AKA this is not an update because the keys are different",
+        `buckets[hashCode].toString() After: ${buckets[hashCode].toString()}`,
       );
-
-      createList.append({ key, value });
-      buckets.splice(hashCode, 1, createList.valueLinkedLists());
       return;
     }
   };
@@ -207,4 +214,3 @@ test.set("sembilan", "I am sembilan");
 test.set("sembalun", "I am sembalun");
 
 console.log(...test.showBuckets());
-
