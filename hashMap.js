@@ -117,10 +117,8 @@ function HashMap() {
   };
 
   const clear = () => {
-    buckets.forEach((el, indx) => {
-      const newCreateList = LinkedList();
-      newCreateList.removeLists();
-      buckets.splice(indx, 1, newCreateList.valueLinkedLists());
+    buckets.forEach((el) => {
+      if (el !== undefined) el.removeLists();
     });
   };
 
@@ -210,3 +208,5 @@ console.log(hashMap.remove("jaka"));
 console.log(hashMap.remove("Carlos"));
 console.log(...hashMap.showBuckets());
 console.log(hashMap.length());
+hashMap.clear();
+console.log(...hashMap.showBuckets());
