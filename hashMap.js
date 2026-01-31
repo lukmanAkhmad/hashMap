@@ -34,7 +34,6 @@ function HashMap() {
       while (tempNode !== null) {
         const key = tempNode.LLvalue.key;
         const value = tempNode.LLvalue.value;
-        console.log(`tempNode: ${key}`);
 
         const hashCode = hash(key);
 
