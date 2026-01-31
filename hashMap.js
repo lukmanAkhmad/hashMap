@@ -25,6 +25,62 @@ function HashMap() {
     return hashCode;
   };
 
+  const growth = () => {
+    capacity = capacity * 2;
+    console.log(`capacity: ${capacity}`);
+    let doubleSizeBuckets = new Array(capacity);
+
+    buckets.forEach((el) => {
+      let headNode = el.valueLinkedLists();
+      let tempNode = headNode;
+
+      while (tempNode !== null) {
+        let linkedListKey = tempNode.LLvalue.key;
+        let linkedListValue = tempNode.LLvalue.value;
+        console.log(`tempNode: ${linkedListKey}`);
+
+        const hashCode = hash(linkedListKey);
+
+        if (hashCode < 0 || hashCode >= doubleSizeBuckets.length) {
+          throw new Error(
+            "Trying to access doubleSizeBuckets index out of bounds",
+          );
+        }
+
+        if (
+          doubleSizeBuckets[hashCode] === undefined ||
+          doubleSizeBuckets[hashCode] === null
+        ) {
+          const createList = LinkedList();
+
+          doubleSizeBuckets[hashCode] = createList;
+          doubleSizeBuckets[hashCode].prepend({
+            linkedListKey,
+            linkedListValue,
+          });
+        } else if (
+          doubleSizeBuckets[hashCode] !== undefined ||
+          doubleSizeBuckets[hashCode] !== null
+        ) {
+          const keyValue = doubleSizeBuckets[hashCode].searchKey(linkedListKey);
+          const indxKeyValue = doubleSizeBuckets[hashCode].find(linkedListKey);
+
+          if (linkedListKey === keyValue)
+            doubleSizeBuckets[hashCode].removeAt(indxKeyValue);
+
+          doubleSizeBuckets[hashCode].append({
+            linkedListKey,
+            linkedListValue,
+          });
+        }
+
+        tempNode = tempNode.nextNode;
+      }
+    });
+
+    buckets = doubleSizeBuckets;
+  };
+
   const set = (key, value) => {
     const hashCode = hash(key);
     console.log(`kode hash ${key}: ${hashCode}`);
