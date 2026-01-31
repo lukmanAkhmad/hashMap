@@ -161,7 +161,12 @@ function HashMap() {
     return flatAllHashMapPairKeyValue;
   };
 
-  const showBuckets = () => buckets;
+  const showBuckets = () => {
+    console.log(`typeof buckets: ${typeof buckets}`);
+    console.log(Array.isArray(buckets));
+    console.log(`buckets.length: ${buckets.length}`);
+    return buckets.map((val) => val.valueLinkedLists());
+  };
 
   return {
     hash,
