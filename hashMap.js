@@ -32,11 +32,11 @@ function HashMap() {
       let tempNode = headNode;
 
       while (tempNode !== null) {
-        let linkedListKey = tempNode.LLvalue.key;
-        let linkedListValue = tempNode.LLvalue.value;
-        console.log(`tempNode: ${linkedListKey}`);
+        const key = tempNode.LLvalue.key;
+        const value = tempNode.LLvalue.value;
+        console.log(`tempNode: ${key}`);
 
-        const hashCode = hash(linkedListKey);
+        const hashCode = hash(key);
 
         if (hashCode < 0 || hashCode >= doubleSizeBuckets.length) {
           throw new Error(
@@ -52,22 +52,22 @@ function HashMap() {
 
           doubleSizeBuckets[hashCode] = createList;
           doubleSizeBuckets[hashCode].prepend({
-            linkedListKey,
-            linkedListValue,
+            key,
+            value,
           });
         } else if (
           doubleSizeBuckets[hashCode] !== undefined ||
           doubleSizeBuckets[hashCode] !== null
         ) {
-          const keyValue = doubleSizeBuckets[hashCode].searchKey(linkedListKey);
-          const indxKeyValue = doubleSizeBuckets[hashCode].find(linkedListKey);
+          const keyValue = doubleSizeBuckets[hashCode].searchKey(key);
+          const indxKeyValue = doubleSizeBuckets[hashCode].find(key);
 
-          if (linkedListKey === keyValue)
+          if (key === keyValue)
             doubleSizeBuckets[hashCode].removeAt(indxKeyValue);
 
           doubleSizeBuckets[hashCode].append({
-            linkedListKey,
-            linkedListValue,
+            key,
+            value,
           });
         }
 
