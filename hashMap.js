@@ -3,9 +3,6 @@ import { LinkedList } from "./linked-lists.js";
 function HashMap() {
   let capacity = 16;
   let loadFactor = 0.75;
-  const MAX_BUCKET_ENTRIES = capacity * loadFactor;
-  console.log(`MAX_BUCKET_ENTRIES: ${MAX_BUCKET_ENTRIES}`);
-
   let buckets = new Array(capacity);
 
   const hash = (key) => {
@@ -86,43 +83,31 @@ function HashMap() {
     console.log(`kode hash ${key}: ${hashCode}`);
 
     if (hashCode < 0 || hashCode >= buckets.length) {
-      throw new Error("Trying to access index out of bounds");
+      throw new Error("Trying to access buckets index out of bounds");
     }
-
-    console.log(`buckets[hashCode] Before: ${buckets[hashCode]}`);
 
     if (buckets[hashCode] === undefined || buckets[hashCode] === null) {
       const createList = LinkedList();
 
       buckets[hashCode] = createList;
       buckets[hashCode].prepend({ key, value });
-
-      return;
-    }
-
-    if (buckets[hashCode] !== undefined || buckets[hashCode] !== null) {
+    } else if (buckets[hashCode] !== undefined || buckets[hashCode] !== null) {
       const keyValue = buckets[hashCode].searchKey(key);
       const indxKeyValue = buckets[hashCode].find(key);
 
-      console.log(key === keyValue);
-      console.log(indxKeyValue);
-
-      if (key === keyValue) {
-        console.log(
-          "calling removeAt AKA this is an update because the keys are same",
-        );
-        buckets[hashCode].removeAt(indxKeyValue);
-      } else {
-        console.log(
-          "not calling removeAt AKA this is not an update because the keys are different",
-        );
-      }
+      if (key === keyValue) buckets[hashCode].removeAt(indxKeyValue);
 
       buckets[hashCode].append({ key, value });
-      console.log(
-        `buckets[hashCode].toString() After: ${buckets[hashCode].toString()}`,
-      );
-      return;
+    }
+
+    const hashMapEntries = length();
+    const MAX_BUCKET_ENTRIES = capacity * loadFactor;
+
+    console.log(`hashMapEntries: ${hashMapEntries}`);
+    console.log(`MAX_BUCKET_ENTRIES: ${MAX_BUCKET_ENTRIES}`);
+
+    if (hashMapEntries > MAX_BUCKET_ENTRIES) {
+      growth();
     }
   };
 
@@ -238,30 +223,5 @@ function HashMap() {
     showBuckets,
   };
 }
-
-const hashMap = HashMap();
-hashMap.set("Carlos", "I am the old value.");
-hashMap.set("Rama", "I am the old value.");
-hashMap.set("Sita", "I am the old value.");
-hashMap.set("Sita", "I am the new value.");
-hashMap.set("yono", "I .");
-hashMap.set("delapan", "I am delapan");
-hashMap.set("sembilan", "I am sembilan");
-hashMap.set("sembalun", "I am sembalun");
-hashMap.set("lion", "golden");
-
-console.log(...hashMap.showBuckets());
-console.log(hashMap.get("lion"));
-console.log(hashMap.has("Sita"));
-console.log(hashMap.remove("jaka"));
-console.log(hashMap.remove("Carlos"));
-console.log(...hashMap.showBuckets());
-console.log(hashMap.length());
-hashMap.clear();
-console.log(...hashMap.showBuckets());
-console.log(hashMap.length());
-console.log(hashMap.keys());
-console.log(hashMap.values());
-console.log(hashMap.entries());
 
 export { HashMap };
