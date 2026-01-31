@@ -1,5 +1,6 @@
-import { HashMap } from "./hashMap.js";
+import { HashMap, HashSet } from "./hashMap.js";
 
+console.log("Implement HashMap");
 const test = HashMap();
 test.set("apple", "red");
 test.set("banana", "yellow");
@@ -13,7 +14,6 @@ test.set("ice cream", "white");
 test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
-
 console.log(test.length());
 test.set("moon", "silver");
 console.log(test.length());
@@ -32,3 +32,37 @@ console.log(test.entries());
 test.clear();
 console.log(test.length());
 console.log(test.showBuckets());
+
+console.log("");
+console.log("Implement HashSet");
+const hashSet = HashSet();
+hashSet.set("apple", "red");
+hashSet.set("banana", "yellow");
+hashSet.set("carrot", "orange");
+hashSet.set("dog", "brown");
+hashSet.set("elephant", "gray");
+hashSet.set("frog", "green");
+hashSet.set("grape", "purple");
+hashSet.set("hat", "black");
+hashSet.set("ice cream", "white");
+hashSet.set("jacket", "blue");
+hashSet.set("kite", "pink");
+hashSet.set("lion", "golden");
+
+console.log(hashSet.length());
+hashSet.set("moon", "silver");
+console.log(hashSet.length());
+console.log(hashSet.showBuckets());
+hashSet.set("moon", "grey");
+console.log(hashSet.length());
+console.log(hashSet.showBuckets());
+console.log(hashSet.get("carrot"));
+console.log(hashSet.has("dog"));
+console.log(hashSet.remove("moon"));
+console.log(hashSet.length());
+console.log(hashSet.showBuckets());
+console.log(hashSet.keys());
+console.log(hashSet.entries());
+hashSet.clear();
+console.log(hashSet.length());
+console.log(hashSet.showBuckets());
