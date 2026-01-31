@@ -1,4 +1,4 @@
-import { LinkedList } from "./linked-lists";
+import { LinkedList } from "./linked-lists.js";
 
 function HashMap() {
   let capacity = 16;
@@ -126,13 +126,9 @@ function HashMap() {
     let allHashMapKey = [];
 
     buckets.forEach((el) => {
-      const newCreateList = LinkedList();
+      const allKeyInLinkedList = el.logKeyLL();
 
-      newCreateList.addListToHeadnode(el);
-
-      const allKey = newCreateList.logKeyLL();
-
-      allHashMapKey.push(allKey);
+      allHashMapKey.push(allKeyInLinkedList);
     });
     const flatAllHashMapKey = allHashMapKey.flat();
 
@@ -178,7 +174,6 @@ function HashMap() {
   return {
     hash,
     set,
-    showBuckets,
     get,
     has,
     remove,
@@ -187,6 +182,7 @@ function HashMap() {
     keys,
     values,
     entries,
+    showBuckets,
   };
 }
 
@@ -210,3 +206,7 @@ console.log(...hashMap.showBuckets());
 console.log(hashMap.length());
 hashMap.clear();
 console.log(...hashMap.showBuckets());
+console.log(hashMap.length());
+console.log(hashMap.keys());
+
+export { HashMap };
