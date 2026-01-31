@@ -139,13 +139,9 @@ function HashMap() {
     let allHashMapValues = [];
 
     buckets.forEach((el) => {
-      const newCreateList = LinkedList();
+      const allValuesInLinkedList = el.logValueLL();
 
-      newCreateList.addListToHeadnode(el);
-
-      const allValues = newCreateList.logValueLL();
-
-      allHashMapValues.push(allValues);
+      allHashMapValues.push(allValuesInLinkedList);
     });
     const flatAllHashMapValues = allHashMapValues.flat();
 
@@ -208,5 +204,6 @@ hashMap.clear();
 console.log(...hashMap.showBuckets());
 console.log(hashMap.length());
 console.log(hashMap.keys());
+console.log(hashMap.values());
 
 export { HashMap };
