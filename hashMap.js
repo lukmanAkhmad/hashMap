@@ -152,11 +152,7 @@ function HashMap() {
     let allHashMapPairKeyValue = [];
 
     buckets.forEach((el) => {
-      const newCreateList = LinkedList();
-
-      newCreateList.addListToHeadnode(el);
-
-      const logPair = newCreateList.logPairKeyValueLL();
+      const logPair = el.logPairKeyValueLL();
 
       allHashMapPairKeyValue.push(logPair);
     });
@@ -205,5 +201,6 @@ console.log(...hashMap.showBuckets());
 console.log(hashMap.length());
 console.log(hashMap.keys());
 console.log(hashMap.values());
+console.log(hashMap.entries());
 
 export { HashMap };
