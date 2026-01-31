@@ -80,7 +80,6 @@ function HashMap() {
 
   const set = (key, value) => {
     const hashCode = hash(key);
-    console.log(`kode hash ${key}: ${hashCode}`);
 
     if (hashCode < 0 || hashCode >= buckets.length) {
       throw new Error("Trying to access buckets index out of bounds");
@@ -102,9 +101,6 @@ function HashMap() {
 
     const hashMapEntries = length();
     const MAX_BUCKET_ENTRIES = capacity * loadFactor;
-
-    console.log(`hashMapEntries: ${hashMapEntries}`);
-    console.log(`MAX_BUCKET_ENTRIES: ${MAX_BUCKET_ENTRIES}`);
 
     if (hashMapEntries > MAX_BUCKET_ENTRIES) {
       growth();
